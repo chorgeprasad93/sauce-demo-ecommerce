@@ -10,7 +10,7 @@ test.describe("Inventory Page Tests",()=>{
         await inventoryPage.validateItemsCountOnPage()
     })
 
-    test.only("Select sort option 'Name (Z to A)'",async({page})=>{
+    test("Select sort option 'Name (Z to A)'",async({page})=>{
         const pageObjectManager = new PageObjectManager(page)
         const loginPage = pageObjectManager.getLoginPage()
         const inventoryPage = pageObjectManager.getInventoryPage()
