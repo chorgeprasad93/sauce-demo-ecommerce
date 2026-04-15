@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 1
+      "actualWorkers": 5
     },
     "preserveOutput": "always",
     "projects": [
@@ -20,7 +20,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 5
         },
         "id": "setup",
         "name": "setup",
@@ -36,7 +36,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 5
         },
         "id": "chromium",
         "name": "chromium",
@@ -75,6 +75,48 @@
   },
   "suites": [
     {
+      "title": "auth.spec.ts",
+      "file": "auth.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "authenticate",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2124,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-04-15T10:07:22.489Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d748ac400d08b85935ef-3481d83907a08032ffa7",
+          "file": "auth.spec.ts",
+          "line": 8,
+          "column": 6
+        }
+      ]
+    },
+    {
       "title": "inventory.spec.ts",
       "file": "inventory.spec.ts",
       "column": 0,
@@ -88,7 +130,286 @@
           "column": 6,
           "specs": [
             {
+              "title": "Login as standard_user Count all product cards on /inventory.html",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2011,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\u001b[33m6\u001b[39m\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T10:07:22.487Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "491382254a121adeeb47-18de5656cfa50d77d1a7",
+              "file": "inventory.spec.ts",
+              "line": 5,
+              "column": 9
+            },
+            {
               "title": "Select sort option 'Name (Z to A)'",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2524,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[\n  \u001b[32m'Test.allTheThings() T-Shirt (Red)'\u001b[39m,\n  \u001b[32m'Sauce Labs Onesie'\u001b[39m,\n  \u001b[32m'Sauce Labs Fleece Jacket'\u001b[39m,\n  \u001b[32m'Sauce Labs Bolt T-Shirt'\u001b[39m,\n  \u001b[32m'Sauce Labs Bike Light'\u001b[39m,\n  \u001b[32m'Sauce Labs Backpack'\u001b[39m\n]\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T10:07:22.488Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "491382254a121adeeb47-9f726a229f7431d6e041",
+              "file": "inventory.spec.ts",
+              "line": 13,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "login.spec.ts",
+      "file": "login.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Login Tests",
+          "file": "login.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Empty username and password, check error message",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2015,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Epic sadface: Username is required\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T10:07:22.490Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-e42ff5cc0792c217534a",
+              "file": "login.spec.ts",
+              "line": 13,
+              "column": 9
+            },
+            {
+              "title": "valid username and empty password, check error message",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 2025,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Epic sadface: Password is required\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T10:07:22.487Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-44a0c4d5fad3b1c6cb90",
+              "file": "login.spec.ts",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "locked-out username and valid password, check error message",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1462,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Epic sadface: Sorry, this user has been locked out.\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T10:07:25.033Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-197b11cd106b2853ec40",
+              "file": "login.spec.ts",
+              "line": 29,
+              "column": 9
+            },
+            {
+              "title": "valid username and invalid password, check error message",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2493,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Epic sadface: Username and password do not match any user in this service\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T10:07:25.035Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-f165fe5e9ea1e462e363",
+              "file": "login.spec.ts",
+              "line": 37,
+              "column": 9
+            },
+            {
+              "title": "Successfull login and Successfull logout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 2709,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T10:07:25.042Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-347e0f28c0f4236689db",
+              "file": "login.spec.ts",
+              "line": 45,
+              "column": 9
+            },
+            {
+              "title": "Login as performance_glitch_user Measure time to load inventory",
               "ok": true,
               "tags": [],
               "tests": [
@@ -103,16 +424,16 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1562,
+                      "duration": 6639,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "[\n  \u001b[32m'Test.allTheThings() T-Shirt (Red)'\u001b[39m,\n  \u001b[32m'Sauce Labs Onesie'\u001b[39m,\n  \u001b[32m'Sauce Labs Fleece Jacket'\u001b[39m,\n  \u001b[32m'Sauce Labs Bolt T-Shirt'\u001b[39m,\n  \u001b[32m'Sauce Labs Bike Light'\u001b[39m,\n  \u001b[32m'Sauce Labs Backpack'\u001b[39m\n]\n"
+                          "text": "Login took 5.097 seconds\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-14T18:34:20.522Z",
+                      "startTime": "2026-04-15T10:07:25.150Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -120,10 +441,132 @@
                   "status": "expected"
                 }
               ],
-              "id": "491382254a121adeeb47-9f726a229f7431d6e041",
-              "file": "inventory.spec.ts",
-              "line": 13,
-              "column": 10
+              "id": "41d3fd2474a19feb00a1-6380d5a32aaf41ff376e",
+              "file": "login.spec.ts",
+              "line": 58,
+              "column": 9
+            },
+            {
+              "title": "Enter SQL injection in username",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1380,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Epic sadface: Username and password do not match any user in this service\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T10:07:25.545Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-2260ce5f1e8195815011",
+              "file": "login.spec.ts",
+              "line": 70,
+              "column": 9
+            },
+            {
+              "title": "Enter XSS in username",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2329,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Epic sadface: Username and password do not match any user in this service\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T10:07:26.509Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-3afa997b7eb7a7f3263a",
+              "file": "login.spec.ts",
+              "line": 78,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Unauthenticated Access",
+          "file": "login.spec.ts",
+          "line": 88,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Without logging in Navigate directly to /inventory.html",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2551,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Epic sadface: You can only access '/inventory.html' when you are logged in.\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T10:07:26.937Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-2d1337a3325342b2949b",
+              "file": "login.spec.ts",
+              "line": 90,
+              "column": 9
             }
           ]
         }
@@ -132,9 +575,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-14T18:34:20.169Z",
-    "duration": 2318.5460000000003,
-    "expected": 1,
+    "startTime": "2026-04-15T10:07:22.028Z",
+    "duration": 9840.952,
+    "expected": 12,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0
