@@ -7,7 +7,7 @@ export default defineConfig({
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 4 : undefined,
-  reporter: [['html'], ['json', { outputFile: 'results.json' }]],
+  reporter: [['html'], ['github'], ['json', { outputFile: 'results.json' }]],
   timeout: 30 * 1000,
   use: {
     baseURL: 'https://www.saucedemo.com/',

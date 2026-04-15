@@ -20,8 +20,8 @@ jobs:
     - name: Run Playwright tests
       run: npx playwright test
     - name: Generate Summary
-      uses: anthonyamaro/playwright-report-summary@v1
       if: always()
+      uses: dmsi-io/playwright-report-summary@v1
       with:
         report-file: results.json
     - uses: actions/upload-artifact@v4
