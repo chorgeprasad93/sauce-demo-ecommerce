@@ -10,7 +10,7 @@ export default defineConfig({
   reporter: [['html'], ['github'], ['json', { outputFile: 'results.json' }]],
   timeout: 30 * 1000,
   use: {
-    baseURL: 'https://www.saucedemo.com/',
+    baseURL: 'https://www.saucedemo.com',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
@@ -23,6 +23,7 @@ export default defineConfig({
     { name: 'chromium', 
       use: { ...devices['Desktop Chrome'], storageState: STORAGE_STATE,},
       dependencies: ['setup'],
+      testMatch: '**/*.spec.ts',
     },
     // { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
     // { name: 'webkit', use: { ...devices['Desktop Safari'] } },
