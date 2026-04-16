@@ -1,7 +1,8 @@
 import { test as setup } from '@playwright/test';
 import { PageObjectManager } from '../pages/PageObjectManager';
+import fs from 'fs';
     
-const authFile = 'utils/storageState.json';
+const authFile = 'playwright/.auth/storageState.json';
 
 setup('authenticate', async ({ page }) => {
     const pageObjectManager = new PageObjectManager(page);
@@ -13,6 +14,7 @@ setup('authenticate', async ({ page }) => {
     await loginPage.validateSuccessfulLogin();
 
     await page.waitForURL('**/inventory.html');
+    fs.mkdirSync('playwright/.auth', { recursive: true });
     // Save the authentication state to the filesystem
     await page.context().storageState({ path: authFile });
 });

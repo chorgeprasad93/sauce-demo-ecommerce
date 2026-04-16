@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 dotenv.config();
-export const STORAGE_STATE = 'utils/storageState.json';
+export const STORAGE_STATE = 'playwright/.auth/storageState.json';
 
 export default defineConfig({
   testDir: './tests',
