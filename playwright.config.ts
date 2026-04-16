@@ -1,6 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+dotenv.config();
 
-export const STORAGE_STATE = 'utils/storageState.json';
+export const STORAGE_STATE = 'playwright/.auth/storageState.json';
 
 export default defineConfig({
   testDir: './tests',
@@ -10,7 +12,7 @@ export default defineConfig({
   reporter: [['html'], ['github'], ['json', { outputFile: 'results.json' }]],
   timeout: 30 * 1000,
   use: {
-    baseURL: 'https://www.saucedemo.com',
+    baseURL: process.env.BASE_URL ?? 'https://www.saucedemo.com',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
@@ -18,7 +20,8 @@ export default defineConfig({
   projects: [
     {
       name: 'setup',
-      testMatch: /auth\.setup\.ts/, // Matches the file we created earlier
+      testMatch: /auth\.spec\.ts/,
+      use: { ...devices['Desktop Chrome'] }, 
     },
     { name: 'chromium', 
       use: { ...devices['Desktop Chrome'], storageState: STORAGE_STATE,},

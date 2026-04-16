@@ -17,6 +17,8 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Export secrets to .env 
+      run: echo "${{ secrets.SAUCEDEMO_SECRETS }}" > .env
     - name: Run Playwright tests
       run: npx playwright test
     - name: Generate Summary

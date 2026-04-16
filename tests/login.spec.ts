@@ -1,20 +1,13 @@
 import { expect, test } from '@playwright/test';
 import { PageObjectManager } from '../pages/PageObjectManager';
 
-// Depend on the authentication state produced by `tests/auth.spec.ts`
-// test.use({ storageState: 'utils/storageState.json' });
-import data from '../fixtures/users.json'
-import InventoryPage from '../pages/InventoryPage';
-const { users } = data;
-
-
 test.describe('Login Tests', () => {
 
     test('Empty username and password, check error message', async ({ page }) => {
         const pageObjectManager = new PageObjectManager(page);
         const loginPage = pageObjectManager.getLoginPage();
         await loginPage.goto('/');
-        await loginPage.login(users.empty.username, users.empty.password)
+        await loginPage.login(process.env.EMPTY_USER!,process.env.EMPTY_PASS!)
         await loginPage.validateUsernameError()
     })
 
@@ -22,7 +15,7 @@ test.describe('Login Tests', () => {
         const pageObjectManager = new PageObjectManager(page);
         const loginPage = pageObjectManager.getLoginPage();
         await loginPage.goto('/');
-        await loginPage.login(users.standard.username, users.empty.password)
+        await loginPage.login(process.env.STANDARD_USER!,process.env.EMPTY_PASS!)
         await loginPage.validatePasswordError()
     })
 
@@ -30,7 +23,7 @@ test.describe('Login Tests', () => {
         const pageObjectManager = new PageObjectManager(page);
         const loginPage = pageObjectManager.getLoginPage();
         await loginPage.goto('/');
-        await loginPage.login(users.locked.username, users.locked.password)
+        await loginPage.login(process.env.LOCKED_USER!,process.env.LOCKED_PASS!)
         await loginPage.validateLockedUserError()
     })
 
@@ -38,7 +31,7 @@ test.describe('Login Tests', () => {
         const pageObjectManager = new PageObjectManager(page);
         const loginPage = pageObjectManager.getLoginPage();
         await loginPage.goto('/');
-        await loginPage.login(users.invalidPassword.username, users.invalidPassword.password)
+        await loginPage.login(process.env.INVALID_USER!,process.env.INVALID_PASS!)
         await loginPage.validateInvalidPasswordError()
     })
 
@@ -48,7 +41,7 @@ test.describe('Login Tests', () => {
         const inventoryPage = pageObjectManager.getInventoryPage();
         // Ensure we're authenticated for this flow — perform login if storageState wasn't applied
         await loginPage.goto('/');
-        await loginPage.login(users.standard.username, users.standard.password);
+        await loginPage.login(process.env.STANDARD_USER!,process.env.STANDARD_PASS!);
         await loginPage.validateSuccessfulLogin();
         await inventoryPage.validateLogout();
     })
@@ -60,7 +53,7 @@ test.describe('Login Tests', () => {
         const loginPage = pageObjectManager.getLoginPage();
         await loginPage.goto('/');
         const start_time = Date.now()
-        await loginPage.login(users.performance.username, users.performance.password);
+        await loginPage.login(process.env.PERFORMANCE_USER!,process.env.PERFORMANCE_PASS!);
         const end_time = Date.now()
         const durationInSeconds = (end_time - start_time) / 1000;
         console.log(`Login took ${durationInSeconds} seconds`);
@@ -71,7 +64,7 @@ test.describe('Login Tests', () => {
         const pageObjectManager = new PageObjectManager(page);
         const loginPage = pageObjectManager.getLoginPage();
         await loginPage.goto('/');
-        await loginPage.login(users.sqlPayload.username, users.performance.password);
+        await loginPage.login(process.env.SQL_PAYLOAD_USER!,process.env.SQL_PAYLOAD_PASS!);
         await loginPage.validateErrorMsg()
     })
 
@@ -79,7 +72,7 @@ test.describe('Login Tests', () => {
         const pageObjectManager = new PageObjectManager(page);
         const loginPage = pageObjectManager.getLoginPage();
         await loginPage.goto('/');
-        await loginPage.login(users.scriptPayload.username, users.performance.password);
+        await loginPage.login(process.env.SCRIPT_PAYLOAD_USER!,process.env.SCRIPT_PAYLOAD_PASS!);
         await loginPage.validateErrorMsg()
     })
 
