@@ -10,7 +10,8 @@ setup('authenticate', async ({ page }) => {
     const loginPage = pageObjectManager.getLoginPage();
 
     await loginPage.goto('/');
-    await loginPage.login(users.standard.username, users.standard.password);
+    await loginPage.login(process.env.STANDARD_USER!,  
+        process.env.STANDARD_PASS!);
     await loginPage.validateSuccessfulLogin();
 
     await page.waitForURL('**/inventory.html');
