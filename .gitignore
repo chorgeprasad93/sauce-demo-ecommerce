@@ -8,3 +8,5 @@ node_modules/
 /playwright/.auth/
 utils/storageState.json
 fixtures/users.json
+results.json
+
