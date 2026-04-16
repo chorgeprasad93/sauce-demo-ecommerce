@@ -1,6 +1,11 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 dotenv.config();
+if (process.env.SAUCEDEMO_SECRETS) {
+    const parsed = dotenv.parse(process.env.SAUCEDEMO_SECRETS);
+    // parsed = { BASE_URL: '...', STANDARD_USER: '...', STANDARD_PASS: '...', ... }
+    Object.assign(process.env, parsed); // merge all keys into process.env
+}
 export const STORAGE_STATE = 'playwright/.auth/storageState.json';
 
 export default defineConfig({
