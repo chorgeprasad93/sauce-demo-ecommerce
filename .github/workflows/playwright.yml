@@ -17,29 +17,9 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Export secrets to .env 
+      run: echo "${{ secrets.SAUCEDEMO_SECRETS }}" > .env
     - name: Run Playwright tests
-      env:
-          STANDARD_USER: ${{ secrets.STANDARD_USER }} 
-          STANDARD_PASS: ${{ secrets.STANDARD_PASS }}
-          LOCKED_USER: ${{ secrets.LOCKED_USER }} 
-          LOCKED_PASS: ${{ secrets.LOCKED_PASS }}
-          PROBLEM_USER: ${{ secrets.PROBLEM_USER }} 
-          PROBLEM_PASS: ${{ secrets.PROBLEM_PASS }}
-          PERFORMANCE_USER: ${{ secrets.PERFORMANCE_USER }} 
-          PERFORMANCE_PASS: ${{ secrets.PERFORMANCE_PASS }}
-          ERR0R_USER: ${{ secrets.ERR0R_USER }} 
-          ERR0R_PASS: ${{ secrets.ERR0R_PASS }}
-          VISUAL_USER: ${{ secrets.VISUAL_USER }} 
-          VISUAL_PASS: ${{ secrets.VISUAL_PASS }}
-          SQL_PAYLOAD_USER: ${{ secrets.SQL_PAYLOAD_USER }} 
-          SQL_PAYLOAD_PASS: ${{ secrets.SQL_PAYLOAD_PASS }}
-          SCRIPT_PAYLOAD_USER: ${{ secrets.SCRIPT_PAYLOAD_USER }} 
-          SCRIPT_PAYLOAD_PASS: ${{ secrets.SCRIPT_PAYLOAD_PASS }}
-          EMPTY_USER: ${{ secrets.EMPTY_USER }} 
-          EMPTY_PASS: ${{ secrets.EMPTY_PASS }}
-          INVALID_USER: ${{ secrets.INVALID_USER }} 
-          INVALID_PASS: ${{ secrets.INVALID_PASS }}
-          BASE_URL: ${{ secrets.BASE_URL }}
       run: npx playwright test
     - name: Generate Summary
       if: always()
