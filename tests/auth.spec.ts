@@ -13,6 +13,7 @@ setup('authenticate', async ({ page }) => {
     await loginPage.login(users.standard.username, users.standard.password);
     await loginPage.validateSuccessfulLogin();
 
+    await page.waitForURL('**/inventory.html');
     // Save the authentication state to the filesystem
     await page.context().storageState({ path: authFile });
 });
