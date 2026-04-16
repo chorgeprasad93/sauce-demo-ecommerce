@@ -1,7 +1,5 @@
 import { test as setup } from '@playwright/test';
 import { PageObjectManager } from '../pages/PageObjectManager';
-import data from '../fixtures/users.json'
-const { users } = data;
     
 const authFile = 'utils/storageState.json';
 

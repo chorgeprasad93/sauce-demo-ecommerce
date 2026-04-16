@@ -1,13 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { PageObjectManager } from '../pages/PageObjectManager';
 
-// Depend on the authentication state produced by `tests/auth.spec.ts`
-// test.use({ storageState: 'utils/storageState.json' });
-import data from '../fixtures/users.json'
-import InventoryPage from '../pages/InventoryPage';
-const { users } = data;
-
-
 test.describe('Login Tests', () => {
 
     test('Empty username and password, check error message', async ({ page }) => {
