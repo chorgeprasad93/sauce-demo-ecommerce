@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+  "test:setup": "npx playwright test --project=setup",
+  "test:inventory": "npx playwright test --project=setup && npx playwright test --project=chromium tests/inventory.spec.ts",
+  "test:login": "npx playwright test --project=setup && npx playwright test --project=chromium tests/login.spec.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -1,4 +1,4 @@
-import { Expect,test } from "@playwright/test";
+import { test } from '../utils/fixtures';
 import PageObjectManager from "../pages/PageObjectManager";
 
 test.describe("Inventory Page Tests",()=>{

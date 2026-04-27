@@ -13,6 +13,7 @@ export default defineConfig({
   timeout: 30 * 1000,
   use: {
     baseURL: process.env.BASE_URL ?? 'https://www.saucedemo.com',
+    baseURL: process.env.BASE_URL ?? 'https://www.saucedemo.com',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
@@ -20,17 +21,14 @@ export default defineConfig({
   projects: [
     {
       name: 'setup',
-      testMatch: /auth\.spec\.ts/,
-      use: { ...devices['Desktop Chrome'] }, 
+      testMatch: 'tests/auth.spec.ts',  // ← matches auth.spec.ts
+      use: { ...devices['Desktop Chrome'] },
     },
-    { name: 'chromium', 
-      use: { ...devices['Desktop Chrome'], storageState: STORAGE_STATE,},
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'], storageState: STORAGE_STATE },
       dependencies: ['setup'],
-      testMatch: '**/*.spec.ts',
+      testMatch: 'tests/!(auth).spec.ts',
     },
-    // { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
-    // { name: 'webkit', use: { ...devices['Desktop Safari'] } },
-    //{ name: 'mobile', use: { ...devices['iPhone 14'] } },
   ],
 });
-    
