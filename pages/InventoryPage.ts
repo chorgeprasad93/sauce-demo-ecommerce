@@ -9,6 +9,11 @@ class InventoryPage{
     readonly descendingSortValue : string
     readonly itemName : Locator
     readonly expectedItemsList : string[]
+    readonly ascendingSortValue : string
+    readonly lowToHighSortValue : string
+    readonly itemPrice : Locator
+    readonly highToLowSortValue : string
+
     constructor(page: Page){
         this.page = page;
         this.hamburgerMenun = page.getByRole('button',{name:'Open Menu'});
@@ -16,7 +21,11 @@ class InventoryPage{
         this.itemCards = page.locator('.inventory_item')
         this.productSort = page.locator('.product_sort_container')
         this.descendingSortValue = 'Name (Z to A)'
+        this.ascendingSortValue = 'Name (A to Z)'
+        this.lowToHighSortValue = 'Price (low to high)'
+        this.highToLowSortValue = 'Price (high to low)'
         this.itemName = page.locator('.inventory_item_name')
+        this.itemPrice = page.locator('.inventory_item_price')
         this.expectedItemsList = []
     }
     async validateLogout(){
@@ -29,13 +38,36 @@ class InventoryPage{
         const count = await this.itemCards.all()
         console.log(count.length)
     }
-    async validateDescendingSort(){
+    async performSort(sortingValue:string){
         await this.productSort.click();
-        await this.productSort.selectOption({label:this.descendingSortValue})
-        await this.itemName.first().waitFor({state:'visible'})
+        await this.productSort.selectOption({label:sortingValue})
+        await this.itemName.first().waitFor({state:'visible'}) 
+    }
+    async validateDescendingSort(){
+        await this.performSort(this.descendingSortValue)
         const itemNames = await this.itemName.allTextContents()
-        console.log(itemNames)
-
+        const isDescending = itemNames.every((val, i) => i === 0 || itemNames[i - 1] >= val);
+        expect(isDescending).toBeTruthy()
+    }
+    async validateAescendingSort(){
+        await this.performSort(this.ascendingSortValue)
+        const itemNames = await this.itemName.allTextContents()
+        const isAscending = itemNames.every((val, i) => i === 0 || itemNames[i - 1] <= val);
+        expect(isAscending).toBeTruthy()
+    }
+    async validateLowToHighSort(){
+        await this.performSort(this.lowToHighSortValue)
+        const priceStrings:string[] = await this.itemPrice.allTextContents()
+        const itemPrices: number[] = priceStrings.map(p => parseFloat(p.replace(/[^0-9.]/g, '')));
+        const isAscending = itemPrices.every((val, i) => i === 0 || itemPrices[i - 1] <= val);
+        expect(isAscending).toBeTruthy()
+    }
+    async validateHighToLowSort(){
+        await this.performSort(this.highToLowSortValue)
+        const priceStrings:string[] = await this.itemPrice.allTextContents()
+        const itemPrices: number[] = priceStrings.map(p => parseFloat(p.replace(/[^0-9.]/g, '')));
+        const isDescending = itemPrices.every((val, i) => i === 0 || itemPrices[i - 1] >= val);
+        expect(isDescending).toBeTruthy()
     }
 }
 

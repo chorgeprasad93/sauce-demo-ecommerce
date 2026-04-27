@@ -1,46 +1,41 @@
 import { expect, test } from '@playwright/test';
 import { PageObjectManager } from '../pages/PageObjectManager';
+import InventoryPage from '../pages/InventoryPage';
+import LoginPage from '../pages/LoginPage';
 
 test.describe('Login Tests', () => {
-
-    test('Empty username and password, check error message', async ({ page }) => {
-        const pageObjectManager = new PageObjectManager(page);
-        const loginPage = pageObjectManager.getLoginPage();
+    let pageObjectManager: PageObjectManager;
+    let loginPage: LoginPage;
+    let inventoryPage: InventoryPage;
+    test.beforeEach(async ({ page }) => {
+        pageObjectManager = new PageObjectManager(page);
+        loginPage = pageObjectManager.getLoginPage();
+        inventoryPage = pageObjectManager.getInventoryPage();
+        
+        // Every test in this block starts at the login page
         await loginPage.goto('/');
+    });
+    test('Empty username and password, check error message', async ({ page }) => {
         await loginPage.login(process.env.EMPTY_USER!,process.env.EMPTY_PASS!)
         await loginPage.validateUsernameError()
     })
 
     test('valid username and empty password, check error message', async ({ page }) => {
-        const pageObjectManager = new PageObjectManager(page);
-        const loginPage = pageObjectManager.getLoginPage();
-        await loginPage.goto('/');
         await loginPage.login(process.env.STANDARD_USER!,process.env.EMPTY_PASS!)
         await loginPage.validatePasswordError()
     })
 
     test('locked-out username and valid password, check error message', async ({ page }) => {
-        const pageObjectManager = new PageObjectManager(page);
-        const loginPage = pageObjectManager.getLoginPage();
-        await loginPage.goto('/');
         await loginPage.login(process.env.LOCKED_USER!,process.env.LOCKED_PASS!)
         await loginPage.validateLockedUserError()
     })
 
     test('valid username and invalid password, check error message', async ({ page }) => {
-        const pageObjectManager = new PageObjectManager(page);
-        const loginPage = pageObjectManager.getLoginPage();
-        await loginPage.goto('/');
         await loginPage.login(process.env.INVALID_USER!,process.env.INVALID_PASS!)
         await loginPage.validateInvalidPasswordError()
     })
 
     test('Successfull login and Successfull logout', async ({ page }) => {
-        const pageObjectManager = new PageObjectManager(page);
-        const loginPage = pageObjectManager.getLoginPage();
-        const inventoryPage = pageObjectManager.getInventoryPage();
-        // Ensure we're authenticated for this flow — perform login if storageState wasn't applied
-        await loginPage.goto('/');
         await loginPage.login(process.env.STANDARD_USER!,process.env.STANDARD_PASS!);
         await loginPage.validateSuccessfulLogin();
         await inventoryPage.validateLogout();
@@ -49,9 +44,6 @@ test.describe('Login Tests', () => {
     // unauthenticated access check — moved to separate describe below
 
     test('Login as performance_glitch_user Measure time to load inventory', async ({ page }) => {
-        const pageObjectManager = new PageObjectManager(page);
-        const loginPage = pageObjectManager.getLoginPage();
-        await loginPage.goto('/');
         const start_time = Date.now()
         await loginPage.login(process.env.PERFORMANCE_USER!,process.env.PERFORMANCE_PASS!);
         const end_time = Date.now()
@@ -61,17 +53,11 @@ test.describe('Login Tests', () => {
     })
 
     test('Enter SQL injection in username', async ({ page }) => {
-        const pageObjectManager = new PageObjectManager(page);
-        const loginPage = pageObjectManager.getLoginPage();
-        await loginPage.goto('/');
         await loginPage.login(process.env.SQL_PAYLOAD_USER!,process.env.SQL_PAYLOAD_PASS!);
         await loginPage.validateErrorMsg()
     })
 
     test('Enter XSS in username', async ({ page }) => {
-        const pageObjectManager = new PageObjectManager(page);
-        const loginPage = pageObjectManager.getLoginPage();
-        await loginPage.goto('/');
         await loginPage.login(process.env.SCRIPT_PAYLOAD_USER!,process.env.SCRIPT_PAYLOAD_PASS!);
         await loginPage.validateErrorMsg()
     })
