@@ -1,8 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 dotenv.config();
-import dotenv from 'dotenv';
-dotenv.config();
 
 export const STORAGE_STATE = 'playwright/.auth/storageState.json';
 
