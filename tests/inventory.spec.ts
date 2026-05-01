@@ -34,4 +34,12 @@ test.describe("Inventory Page Tests",()=>{
         await inventoryPage.validateHighToLowSort()
     })
 
+    test("Click Add to Cart butto and check it changes to Remove button'",async({page})=>{
+        await inventoryPage.validateAddToCart('Sauce Labs Backpack')
+    })
+
+    test("Add 3 items to cart Verify cart badge",async({page})=>{
+        await inventoryPage.validateCartCount('Sauce Labs Backpack','Sauce Labs Bike Light','Sauce Labs Bolt T-Shirt')
+    })
+
 })

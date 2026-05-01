@@ -13,6 +13,8 @@ class InventoryPage{
     readonly lowToHighSortValue : string
     readonly itemPrice : Locator
     readonly highToLowSortValue : string
+    readonly cartValue : Locator
+    
 
     constructor(page: Page){
         this.page = page;
@@ -27,6 +29,7 @@ class InventoryPage{
         this.itemName = page.locator('.inventory_item_name')
         this.itemPrice = page.locator('.inventory_item_price')
         this.expectedItemsList = []
+        this.cartValue = page.locator('.shopping_cart_badge')
     }
     async validateLogout(){
         await this.hamburgerMenun.click()
@@ -69,6 +72,17 @@ class InventoryPage{
         const isDescending = itemPrices.every((val, i) => i === 0 || itemPrices[i - 1] >= val);
         expect(isDescending).toBeTruthy()
     }
+    async validateAddToCart(productName:string){
+        await this.itemCards.filter({hasText:`${productName}`}).getByRole('button',{name:'Add to cart'}).click()
+        await expect(this.itemCards.filter({hasText:`${productName}`}).getByRole('button',{name:'Remove'})).toContainText('Remove')
+    }
+    async validateCartCount(productName1:string,productName2:string,productName3:string){
+        await this.itemCards.filter({hasText:`${productName1}`}).getByRole('button',{name:'Add to cart'}).click()
+        await this.itemCards.filter({hasText:`${productName2}`}).getByRole('button',{name:'Add to cart'}).click()
+        await this.itemCards.filter({hasText:`${productName3}`}).getByRole('button',{name:'Add to cart'}).click()
+        await expect(this.cartValue).toHaveText('3')
+    }
+
 }
 
 export default InventoryPage;
