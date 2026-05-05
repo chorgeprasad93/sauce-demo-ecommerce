@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
-  "test:setup": "npx playwright test --project=setup",
-  "test:inventory": "npx playwright test --project=setup && npx playwright test --project=chromium tests/inventory.spec.ts",
-  "test:login": "npx playwright test --project=setup && npx playwright test --project=chromium tests/login.spec.ts"
+    "test:setup": "npx playwright test --project=setup",
+    "test:inventory": "npx playwright test --project=setup && npx playwright test --project=chromium tests/inventory.spec.ts",
+    "test:login": "npx playwright test --project=setup && npx playwright test --project=chromium tests/login.spec.ts"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
   "devDependencies": {
     "@playwright/test": "^1.59.0",
     "@types/node": "^25.5.2",
+    "allure-playwright": "^3.7.2",
     "dotenv": "^17.4.2"
   },
   "dependencies": {

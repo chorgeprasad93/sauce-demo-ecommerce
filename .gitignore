@@ -9,3 +9,5 @@ node_modules/
 fixtures/users.json
 results.json
 .env
+allure-results/
+allure-report/

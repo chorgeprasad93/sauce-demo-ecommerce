@@ -9,7 +9,10 @@ export default defineConfig({
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 4 : undefined,
-  reporter: [['html'], ['github'], ['json', { outputFile: 'results.json' }]],
+  reporter: [['html'], 
+            ['github'],
+            ['json', { outputFile: 'results.json' }],
+            ['allure-playwright', { outputFolder: 'allure-results' }]],
   timeout: 30 * 1000,
   use: {
     baseURL: process.env.BASE_URL ?? 'https://www.saucedemo.com',
