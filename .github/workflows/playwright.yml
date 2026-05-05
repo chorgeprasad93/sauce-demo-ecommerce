@@ -10,6 +10,8 @@ on:
         description: 'Branch to run tests on'
         required: false
         default: 'main'
+permissions:
+  contents: write
 jobs:
   test:
     timeout-minutes: 60
