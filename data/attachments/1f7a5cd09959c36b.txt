@@ -1,1 +1,0 @@
-Login took 5.249 seconds
