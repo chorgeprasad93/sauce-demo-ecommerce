@@ -42,4 +42,26 @@ test.describe("Inventory Page Tests",()=>{
         await inventoryPage.validateCartCount('Sauce Labs Backpack','Sauce Labs Bike Light','Sauce Labs Bolt T-Shirt')
     })
 
+    test("Verify each product has name, price, description, and image",async({page})=>{
+        await inventoryPage.validateProductDetails()
+    })
+
+})
+
+test.describe('problematic user tests',()=>{
+    let pageObjectManager: PageObjectManager;
+    let loginPage: LoginPage;
+    let inventoryPage: InventoryPage;
+    test('Login as Problem User Check if product images are broken',async({page})=>{
+        pageObjectManager = new PageObjectManager(page);
+        loginPage = pageObjectManager.getLoginPage();
+        inventoryPage = pageObjectManager.getInventoryPage();
+        await loginPage.goto('/');
+        await loginPage.login(process.env.STANDARD_USER!,process.env.STANDARD_PASS!);
+        await inventoryPage.takeScreenshotOfProductImage()
+        await inventoryPage.validateLogout()
+        await loginPage.goto('/');
+        await loginPage.login(process.env.PROBLEM_USER!,process.env.PROBLEM_PASS!);
+        await inventoryPage.validateBrokenImages()
+    })
 })
