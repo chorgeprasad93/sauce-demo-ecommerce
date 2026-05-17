@@ -1,4 +1,6 @@
 import { Locator, Page, expect } from '@playwright/test';
+import * as fs from 'fs';
+import * as path from 'path';
 
 class InventoryPage {
     readonly page: Page;
@@ -15,7 +17,7 @@ class InventoryPage {
     readonly highToLowSortValue: string
     readonly cartValue: Locator
     readonly itemCard: Locator
-    readonly screenshotsPath: string = '/Users/prasadchorge/Desktop/saucedemo-playwright/screenshots/invetoryPage/'
+    screenshotsPath: string
     screenshot: Buffer | null
     screenshotProblem: Buffer | null
 
@@ -36,6 +38,9 @@ class InventoryPage {
         this.cartValue = page.locator('.shopping_cart_badge')
         this.itemCard = page.locator('.inventory_item')
         this.screenshot = null
+        this.screenshotProblem = null
+        // Use workspace-relative screenshots directory so CI runners can write files
+        this.screenshotsPath = path.join(process.cwd(), 'screenshots', 'invetoryPage') + path.sep;
     }
     async validateLogout() {
         await this.hamburgerMenun.click()
@@ -99,6 +104,8 @@ class InventoryPage {
     }
     async takeScreenshotOfProductImage() {
         await this.page.waitForLoadState('networkidle');
+        // Ensure screenshots directory exists (CI may not have it)
+        fs.mkdirSync(this.screenshotsPath, { recursive: true });
         this.screenshot = await this.page.screenshot({ path: `${this.screenshotsPath}inventoryPage.png`, fullPage: true });
     }
 
