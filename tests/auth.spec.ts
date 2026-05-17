@@ -1,3 +1,5 @@
+/// <reference types="node" />
+
 import { test as setup } from '@playwright/test';
 import { PageObjectManager } from '../pages/PageObjectManager';
 import fs from 'fs';
